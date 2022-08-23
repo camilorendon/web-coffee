@@ -9,7 +9,7 @@ export class InfoPaginaService {
 
   info: infoPagina ={};
   cargada = false;
-  equipo = [];
+  equipo: any[] = [];
 
 
 
@@ -23,6 +23,7 @@ export class InfoPaginaService {
 
    this.cargarInfo();
    this.cargarEquipo();
+   
 
    }
    private cargarInfo(){
@@ -31,18 +32,23 @@ export class InfoPaginaService {
       .subscribe((resp: infoPagina) => {
         this.cargada = true;
         this.info = resp;
+        
       
       }); 
 
    }
 
-   private cargarEquipo(){
+   private cargarEquipo() {
 
-    this.http.get('https://angular-html-53673-default-rtdb.firebaseio.com/.json')
-    .subscribe((resp: any ) => {
-      this.equipo = resp;
-      console.log(resp);
-    }); 
+    // Leer el archivo JSON
+      this.http.get('https://angular-html-25cf9.firebaseio.com/equipo.json')
+      .subscribe( (resp: any) => {
 
-   }
+        this.equipo = resp;
+        // console.log(resp);
+      });
+
+
+    // this.equipo = resp
+  }
 }
