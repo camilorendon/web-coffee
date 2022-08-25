@@ -9,6 +9,9 @@ import { ProductosService } from 'src/app/services/productos.service';
 })
 export class ItemComponent implements OnInit {
 
+  producto: any;
+  id: any;
+
   constructor( private route: ActivatedRoute, 
                public productoService: ProductosService) { }
 
@@ -20,6 +23,8 @@ export class ItemComponent implements OnInit {
       
       this.productoService.getProducto(parametros['id'])
       .subscribe((producto: any)  =>{
+        this.id=parametros['id'];
+        this.producto =producto;
 
         console.log(producto)
       });
